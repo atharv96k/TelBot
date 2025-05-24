@@ -8,7 +8,9 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const shlokas = JSON.parse(fs.readFileSync('shlokas.json'));
 const userFile = 'user.json';
-
+if (!fs.existsSync(userFile)) {
+    fs.writeFileSync(userFile, '[]');
+}
 function saveUser(chatId) {
     let users = JSON.parse(fs.readFileSync(userFile));
     if (!users.includes(chatId)) {
@@ -16,7 +18,6 @@ function saveUser(chatId) {
         fs.writeFileSync(userFile, JSON.stringify(users, null, 2));
     }
 }
-
 
 function getRandomShloka() {
     const s = shlokas[Math.floor(Math.random() * shlokas.length)];
