@@ -1,4 +1,3 @@
-//ceating telegram bot for sending dialy shloka of bhagvatgeeta
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const cron = require('node-cron');
